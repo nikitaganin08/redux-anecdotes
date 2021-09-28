@@ -4,7 +4,11 @@ import {toggleVoteOf} from "../reducers/anecdoteReducer";
 import {removeNotification, setNotification} from "../reducers/notificationReducer";
 
 const AnecdoteList = () => {
-    const anecdotes = useSelector(state => state.anecdotes)
+    const anecdotes = useSelector(({anecdotes, filter}) => {
+        return anecdotes.filter(anecdote => {
+            return anecdote.content.toLowerCase().includes(filter)
+        })
+    })
     const dispatch = useDispatch()
 
     const vote = (anecdote) => {
