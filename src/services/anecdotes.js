@@ -7,6 +7,11 @@ const getAll = async () => {
     return response.data
 }
 
+const update = async (anecdote) => {
+    const response = await axios.put(`${baseUrl}/${anecdote.id}`, anecdote)
+    return response.data
+}
+
 const create = async (content) => {
     const object = {
         content,
@@ -16,4 +21,4 @@ const create = async (content) => {
     return response.data
 }
 
-export default { getAll, create }
+export default { getAll, create, update }
