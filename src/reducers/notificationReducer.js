@@ -12,12 +12,14 @@ const reducer = (state = '', action) => {
 }
 
 export const setNotification = (notification, timeout) => {
+    let timer
     return async dispatch => {
+        clearTimeout(timer)
         dispatch({
             type: 'SET_NOTIFICATION',
             notification
         })
-        setTimeout(() => dispatch({
+        timer = setTimeout(() => dispatch({
             type: 'REMOVE_NOTIFICATION'
         }), timeout * 1000)
     }
